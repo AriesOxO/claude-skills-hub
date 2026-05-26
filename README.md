@@ -12,7 +12,7 @@ Skill 是 Claude Code 的可复用自动化流程，通过 `SKILL.md` 文件定�
 
 ```bash
 # 克隆仓库
-git clone https://github.com/YOUR_USERNAME/claude-skills-hub.git
+git clone https://github.com/AriesOxO/claude-skills-hub.git
 
 # 将想要的 skill 复制到你的 Claude Code skills 目录
 cp -r skills/某个skill ~/.claude/skills/
