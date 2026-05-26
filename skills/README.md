@@ -10,7 +10,9 @@
 
 ## 效率工具 (productivity)
 
-> 暂无，等待你的贡献！
+| 技能 | 说明 | 作者 |
+|------|------|------|
+| [parallel-agent](./parallel-agent/) | 并行子代理编排深度指南：worktree 隔离、分阶段编排、失败恢复 | claude-skills-hub |
 
 ## 代码质量 (code-quality)
 
