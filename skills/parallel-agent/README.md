@@ -43,7 +43,13 @@
 
 ## 安装
 
-**两步配置**（缺一不可）：
+**推荐方式（一行命令，自动配置 CLAUDE.md）：**
+
+```bash
+bash -c "$(curl -sSL https://raw.githubusercontent.com/AriesOxO/claude-skills-hub/master/install.sh)" -- install --auto-config parallel-agent
+```
+
+**手动方式（两步配置）：**
 
 ### 1. 复制 skill 到本地
 
@@ -54,12 +60,6 @@ cp -r skills/parallel-agent ~/.claude/skills/
 ### 2. 配置 CLAUDE.md 行为层
 
 将 [claude-md-snippet.md](./claude-md-snippet.md) 中提供的"并行子代理策略"章节追加到 `~/.claude/CLAUDE.md`（用户级，推荐）或项目根目录的 `CLAUDE.md`（项目级）。
-
-## 配套测试
-
-`test-cases.md` 提供了 10 个测试用例（5 个应触发并行 + 5 个不应触发），用于验证 Claude 在不同场景下是否正确应用此 skill 的编排策略。
-
-执行方法：开新对话，逐个发送测试 prompt，按 `test-cases.md` 中的评分标准打分。
 
 ## 分类
 

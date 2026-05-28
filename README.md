@@ -91,7 +91,60 @@ claude-skills-hub/
 简要流程：
 1. Fork 本仓库
 2. 基于 `skills/_template/` 创建你的技能
-3. 提交 PR，填写技能说明
+3. 用 `csh install --local ./skills/你的技能 你的技能` 本地验证
+4. 提交 PR，填写技能说明
+
+## 常见问题
+
+### 下载失败 / 网络超时
+
+国内用户访问 GitHub 可能不稳定。设置代理后重试：
+
+```bash
+# bash
+export https_proxy=http://127.0.0.1:7897
+csh install parallel-agent
+
+# PowerShell
+$env:HTTPS_PROXY = 'http://127.0.0.1:7897'
+csh.ps1 install parallel-agent
+```
+
+安装器内置 3 次重试，通常第二次就能成功。
+
+### PowerShell 提示"无法加载文件...因为在此系统上禁止运行脚本"
+
+Windows 默认禁止运行 `.ps1` 脚本。以管理员身份运行：
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+或者用一次性方式绕过（不修改系统策略）：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File csh.ps1 install parallel-agent
+```
+
+### tar 解压失败
+
+- **Windows**：需要 Windows 10 1803+ 内置的 `tar.exe`。旧版本请升级系统或安装 [7-Zip](https://7-zip.org/)
+- **macOS/Linux**：通常自带 tar，如果缺失：`brew install gnu-tar` 或 `apt install tar`
+
+### 权限不足 / mkdir 失败
+
+安装器默认写入 `~/.claude/skills/`。如果该路径无权限，用环境变量指定其他位置：
+
+```bash
+export CLAUDE_SKILLS_DIR=~/my-skills
+csh install parallel-agent
+```
+
+### 安装后 Claude 没有使用 skill
+
+1. 确认 skill 文件在正确位置：`ls ~/.claude/skills/parallel-agent/SKILL.md`
+2. 如果 skill 需要 CLAUDE.md 配套配置（如 parallel-agent），确认已追加。用 `--auto-config` 可自动完成
+3. 开新对话测试（旧对话可能不会重新加载 skills）
 
 ## 许可证
 
