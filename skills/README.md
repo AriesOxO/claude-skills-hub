@@ -32,4 +32,6 @@
 
 ## 分析 (analysis)
 
-> 暂无，等待你的贡献！
+| 技能 | 说明 | 作者 |
+|------|------|------|
+| [x-twitter-data](./x-twitter-data/) | X/Twitter 数据查询、提取、监控、Webhook、MCP 与写入确认流程 | Xquik |
