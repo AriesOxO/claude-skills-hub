@@ -48,7 +48,7 @@ Claude Skills Hub 安装器
   --verbose / -v   list 命令显示每个 skill 的描述
 
 示例:
-  bash -c "\$(curl -sSL ${RAW_URL}/install.sh)" -- install --auto-config parallel-agent
+  bash -c "\$(curl -sSL ${RAW_URL}/install.sh)" csh install --auto-config parallel-agent
   csh install --local ./skills/my-skill my-skill
   csh list --verbose
 
@@ -215,6 +215,7 @@ auto_config_claude_md() {
 
 cmd_install() {
   local auto_config=0 local_path="" skills_to_install=()
+  local failed=0
 
   while [ $# -gt 0 ]; do
     case "$1" in
@@ -254,12 +255,14 @@ cmd_install() {
       src_skill_dir="$local_path"
       if [ ! -f "$src_skill_dir/SKILL.md" ]; then
         log_error "目录中缺少 SKILL.md: $src_skill_dir"
+        failed=1
         continue
       fi
     else
       src_skill_dir="$src_root/$skill"
       if [ ! -d "$src_skill_dir" ]; then
         log_error "skill 不存在: $skill（运行 'csh list' 查看可用 skills）"
+        failed=1
         continue
       fi
     fi
@@ -289,7 +292,7 @@ cmd_install() {
         echo "    - $SKILLS_DIR/$s/claude-md-snippet.md" >&2
       done
       echo "" >&2
-      printf "  是否自动追加到 ${CLAUDE_MD}? [y/N] " >&2
+      printf "  是否自动追加到 %s? [y/N] " "$CLAUDE_MD" >&2
       read -r answer
       if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
         for s in "${needs_snippet[@]}"; do
@@ -306,6 +309,8 @@ cmd_install() {
       log_info "提示: 使用 --auto-config 可自动追加"
     fi
   fi
+
+  return "$failed"
 }
 cmd_update() {
   if [ $# -eq 0 ]; then

@@ -20,7 +20,7 @@ csh install x-twitter-data
 For deeper Xquik references, install the upstream package:
 
 ```bash
-npx skills@1.5.3 add Xquik-dev/x-twitter-scraper
+npx skills@1.5.19 add Xquik-dev/x-twitter-scraper
 ```
 
 ## Configuration
@@ -58,3 +58,5 @@ Xquik
 ## License
 
 MIT
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.

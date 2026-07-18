@@ -31,7 +31,7 @@ Do not use this skill for generic social-media copywriting when the task does no
 - A Xquik account: https://docs.xquik.com
 - A user-issued Xquik API key for authenticated REST or MCP API calls.
 - Optional: the installable upstream Xquik skill package for deeper references:
-  `npx skills@1.5.3 add Xquik-dev/x-twitter-scraper`
+  `npx skills@1.5.19 add Xquik-dev/x-twitter-scraper`
 
 Never ask for X passwords, 2FA codes, cookies, session tokens, recovery codes, or browser exports.
 
